@@ -1,13 +1,6 @@
-# Feel free to disable non-critical HA parts during devel by commenting lines out
-# Generated in hadk by executing: rpm/dhd/helpers/add_new_device.sh
-
 Description: Pattern with packages for mako HW Adaptation
 Name: jolla-hw-adaptation-mako
 Requires:
-- pattern:jolla-hw-adaptation-hybris
-- pattern:jolla-hw-adaptation-hybris-droid-vibrator
-- pattern:jolla-ui-configuration-mako
-
 - droid-hal-mako
 - droid-hal-mako-img-boot
 - droid-hal-mako-kernel
@@ -16,7 +9,24 @@ Requires:
 - droid-config-mako-pulseaudio-settings
 - droid-config-mako-policy-settings
 - droid-config-mako-preinit-plugin
+- droid-config-mako-flashing
+- droid-config-mako-bluez4
 - droid-hal-version-mako
+
+# Hybris packages
+- libhybris-libEGL
+- libhybris-libGLESv2
+- libhybris-libwayland-egl
+
+# Sensors
+- hybris-libsensorfw-qt5
+
+# Vibra
+- ngfd-plugin-droid-vibrator
+- qt5-feedback-haptics-droid-vibrator
+
+# Needed for /dev/touchscreen symlink
+- qt5-plugin-generic-evdev
 
 - pulseaudio-modules-droid
 # for audio recording to work:
@@ -51,7 +61,6 @@ Requires:
 - usb-moded
 - usb-moded-defaults-android
 - usb-moded-developer-mode-android
-- usb-moded-pc-suite-mode-android
 
 # Extra useful modes not officially supported:
 # might need some configuration to get working
@@ -70,15 +79,12 @@ Requires:
 # enable device lock and allow to select untrusted software
 - jolla-devicelock-plugin-encsfa
 
-# Settings app needs this since update15
-- jolla-settings-layout
-
-# For devices with working cellular modem:
-- pattern:jolla-sailfish-cellular-apps
-- telepathy-ring
-
-# For devices where test_gps eventually gets a fix:
+# For GPS
 - geoclue-provider-hybris
+
+# For FM radio on some QCOM devices. Mako does not have FM.
+#- qt5-qtmultimedia-plugin-mediaservice-irisradio
+#- jolla-mediaplayer-radio
 
 Summary: Jolla HW Adaptation mako
 
